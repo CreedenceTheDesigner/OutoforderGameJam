@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://bbsfxmbf1rhr7"]
+
+[node name="DestructibleMachine" type="Area3D"]

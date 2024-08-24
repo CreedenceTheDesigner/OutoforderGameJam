@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://rc6xmq1qo1uv"]
+
+[node name="ScoreLabel" type="Label3D"]
