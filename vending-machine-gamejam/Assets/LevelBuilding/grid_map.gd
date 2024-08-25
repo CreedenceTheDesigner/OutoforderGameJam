@@ -64,8 +64,8 @@ func make_maze():
 			var next = surrounding[randi() % surrounding.size()]
 			var dir = next - current
 			
-			var current_path = min(get_cell_item(current), -15) - cell_walls[dir]
-			var next_path = min(get_cell_item(next), -15) - cell_walls[-dir]
+			var current_path = min(get_cell_item(current), 15) - cell_walls[dir]
+			var next_path = min(get_cell_item(next), 15) - cell_walls[-dir]
 			
 			set_cell_item(current, current_path, 0)
 			set_cell_item(next, next_path, 0)
