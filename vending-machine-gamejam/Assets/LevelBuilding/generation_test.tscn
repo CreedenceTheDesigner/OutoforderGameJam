@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2nqf5dcycf4c"]
+
+[ext_resource type="MeshLibrary" uid="uid://bjp353uuacdxk" path="res://Assets/LevelBuilding/RoadParts.tres" id="1_08xhy"]
+[ext_resource type="Script" path="res://Assets/LevelBuilding/grid_map.gd" id="2_s8feq"]
+
+[node name="GenerationTest" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -0.204462, 0.978875, 0, -0.978875, -0.204462, 25, 25, 20)
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_08xhy")
+cell_size = Vector3(4, 1, 4)
+data = {
+"cells": PackedInt32Array(65533, 65533, 15, 65535, 65533, 14, 1, 65533, 13, 3, 65533, 12, 65533, 65535, 11, 65535, 65535, 10, 1, 65535, 9, 3, 65535, 8, 65533, 1, 7, 65535, 1, 6, 1, 1, 5, 3, 1, 4, 65533, 3, 3, 65535, 3, 2, 3, 3, 0, 1, 3, 1)
+}
+script = ExtResource("2_s8feq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.9187, 0)
+light_energy = 9.205
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.093309, 0.995637, 0, -0.995637, 0.093309, 0, 10.8066, 0)
