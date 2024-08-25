@@ -1,0 +1,276 @@
+[gd_scene load_steps=27 format=3 uid="uid://vwr8ajoufse8"]
+
+[ext_resource type="Script" path="res://Controller/Player.gd" id="1_12if5"]
+[ext_resource type="Script" path="res://Controller/SmoothCamera.gd" id="2_e12si"]
+
+[sub_resource type="Animation" id="Animation_i4k0q"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0.00523599), Vector3(0, 0, -0.00523599)]
+}
+
+[sub_resource type="Animation" id="Animation_fdc5i"]
+resource_name = "LeanBackward"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.10472, 0, -0.0174533), Vector3(0.10472, 0, 0.0174533)]
+}
+
+[sub_resource type="Animation" id="Animation_gv67s"]
+resource_name = "LeanForwards"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.10472, 0, 0.0174533), Vector3(-0.10472, 0, -0.0174533)]
+}
+
+[sub_resource type="Animation" id="Animation_c5eoi"]
+resource_name = "LeanLeft"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.10472, 1.5708, -0.0174533), Vector3(-0.10472, 1.5708, 0.0174533)]
+}
+
+[sub_resource type="Animation" id="Animation_6po8p"]
+resource_name = "LeanRight"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.10472, -1.5708, 0.0174533), Vector3(-0.10472, -1.5708, -0.0174533)]
+}
+
+[sub_resource type="Animation" id="Animation_pqxi5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.139626, -0.00523599, 0.0349066)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_56ijk"]
+_data = {
+"Idle": SubResource("Animation_i4k0q"),
+"LeanBackward": SubResource("Animation_fdc5i"),
+"LeanForwards": SubResource("Animation_gv67s"),
+"LeanLeft": SubResource("Animation_c5eoi"),
+"LeanRight": SubResource("Animation_6po8p"),
+"RESET": SubResource("Animation_pqxi5")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mx3t8"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.8, 0.380392, 0.172549, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_leh0u"]
+radius = 0.45
+height = 1.85
+
+[sub_resource type="Curve" id="Curve_p02jg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -1.81555, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_vbp78"]
+curve = SubResource("Curve_p02jg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c2uhr"]
+emission_shape_scale = Vector3(1, 0.25, 1)
+emission_shape = 1
+emission_sphere_radius = 0.4
+gravity = Vector3(0, 1, 0)
+damping_max = 1.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_vbp78")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vlcne"]
+diffuse_mode = 3
+specular_mode = 1
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.796078, 0.796078, 0.796078, 1)
+emission_enabled = true
+emission = Color(0.796078, 0.796078, 0.796078, 1)
+emission_energy_multiplier = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_jdvgd"]
+material = SubResource("StandardMaterial3D_vlcne")
+radial_segments = 16
+rings = 8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wnt7s"]
+emission_shape_scale = Vector3(1, 0.25, 1)
+emission_shape = 1
+emission_sphere_radius = 0.4
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+gravity = Vector3(0, 1, 0)
+damping_min = 3.0
+damping_max = 6.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_vbp78")
+
+[sub_resource type="SphereMesh" id="SphereMesh_v6snp"]
+material = SubResource("StandardMaterial3D_vlcne")
+radial_segments = 16
+rings = 8
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_t7spk"]
+radius = 0.45
+height = 1.85
+
+[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_v6a6g"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p7ngg"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83ygf"]
+animation = &"LeanRight"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_es02k"]
+animation = &"LeanLeft"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kbg3n"]
+animation = &"LeanForwards"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w0na7"]
+animation = &"LeanBackward"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_e0dl0"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_p7ngg")
+blend_point_0/pos = Vector2(0, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_83ygf")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_es02k")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_kbg3n")
+blend_point_3/pos = Vector2(0, 1)
+blend_point_4/node = SubResource("AnimationNodeAnimation_w0na7")
+blend_point_4/pos = Vector2(0, -1)
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+floor_max_angle = 0.872665
+script = ExtResource("1_12if5")
+base_speed = 6.0
+
+[node name="BasePivot" type="Node3D" parent="."]
+transform = Transform3D(0.999403, -0.0341708, -0.00518501, 0.0345599, 0.989665, 0.139173, 0.000375782, -0.139269, 0.990255, 0, -1, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BasePivot"]
+libraries = {
+"": SubResource("AnimationLibrary_56ijk")
+}
+
+[node name="ProtoMesh" type="MeshInstance3D" parent="BasePivot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("StandardMaterial3D_mx3t8")
+mesh = SubResource("CapsuleMesh_leh0u")
+skeleton = NodePath("../..")
+
+[node name="RunParticles" type="GPUParticles3D" parent="BasePivot"]
+cast_shadow = 0
+emitting = false
+amount = 32
+lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_c2uhr")
+draw_pass_1 = SubResource("SphereMesh_jdvgd")
+
+[node name="JumpParticles" type="GPUParticles3D" parent="BasePivot"]
+cast_shadow = 0
+emitting = false
+amount = 6
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wnt7s")
+draw_pass_1 = SubResource("SphereMesh_v6snp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_t7spk")
+
+[node name="CameraTarget" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57, 0)
+
+[node name="SmoothCamera" type="Camera3D" parent="." node_paths=PackedStringArray("target", "player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+cull_mask = 1047549
+current = true
+script = ExtResource("2_e12si")
+target = NodePath("../CameraTarget")
+player = NodePath("..")
+speed = 30.0
+
+[node name="SpringArm3D" type="SpringArm3D" parent="SmoothCamera"]
+unique_name_in_owner = true
+shape = SubResource("SeparationRayShape3D_v6a6g")
+spring_length = 4.0
+
+[node name="ThirdPersonCamera" type="Camera3D" parent="SmoothCamera/SpringArm3D"]
+unique_name_in_owner = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../BasePivot")
+libraries = {
+"": SubResource("AnimationLibrary_56ijk")
+}
+tree_root = SubResource("AnimationNodeBlendSpace2D_e0dl0")
+anim_player = NodePath("../BasePivot/AnimationPlayer")
+parameters/blend_position = Vector2(0, 0)
