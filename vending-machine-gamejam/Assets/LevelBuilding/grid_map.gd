@@ -134,7 +134,7 @@ func record_tile_positions():
 		for z in range(0, height):
 			var current_cell = Vector3(x, 0, z)
 			var current_tile_type = get_cell_item(current_cell)
-			if current_tile_type > 15:
+			if current_tile_type < 15:
 				tiles.append(current_cell)
 	var map_size = Vector2(width, height)
 	$ObjectSpawner.generate_props(tiles, map_size)

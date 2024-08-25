@@ -5,7 +5,6 @@
 
 [node name="ObjectSpawner" type="Node"]
 script = ExtResource("1_wu6bf")
-number_of_vending_machines = null
 
 [node name="ObjectRotationCheck" type="Node" parent="."]
 script = ExtResource("2_6e6xb")

@@ -26,16 +26,16 @@ func place_vending_machines():
 	var tile_list = random_tile(number_of_vending_machines)
 	for i in range(number_of_vending_machines):
 		var tile = tile_list[0]
-		var tile_type = get_node(".").get_cell_item(tile)
-		var allowed_rotations = $ObjectRotationCheck.look_up_rotations(tile_type)
+		var tile_type = get_parent().get_cell_item(tile)
+		var allowed_rotations = $ObjectRotationCheck.look_up_rotation(tile_type)
 		if not allowed_rotations == null:
 			var tile_rotation = allowed_rotations[randi() % allowed_rotations.size() -1]
-			spawn_vending_machine()
+			spawn_vending_machine(tile, tile_rotation)
 		tile_list.pop_front()
 
 
- func spawn_vending_machine(tile, vending_machine_rotation):
-	var vending_machine = preload("res://Assets/LevelBuilding/VendingMachineTest.obj").instance()
-	car.translation = Vector3((tile * 20) + 10)
-	car.rotation_degrees.y = vending_machine_rotation
-	add_child(vending_machine, true)
+func spawn_vending_machine(tile, vending_machine_rotation):
+	var vending_machine = preload("res://Assets/LevelBuilding/vending_machines.tscn").instantiate()
+	#tile.translation = Vector3(((tile * 20) + 10))
+	#tile.rotation_degrees.y = vending_machine_rotation
+	add_child(vending_machine)
