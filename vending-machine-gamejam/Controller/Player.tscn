@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://vwr8ajoufse8"]
+[gd_scene load_steps=33 format=3 uid="uid://vwr8ajoufse8"]
 
 [ext_resource type="Script" path="res://Controller/Player.gd" id="1_12if5"]
+[ext_resource type="Shader" path="res://Controller/Player.gdshader" id="2_7j02w"]
 [ext_resource type="Script" path="res://Controller/SmoothCamera.gd" id="2_e12si"]
 [ext_resource type="AudioStream" uid="uid://c4prdjc6y4kw2" path="res://GDTVAssetPack/Audio/jump.ogg" id="3_wfp7i"]
 [ext_resource type="AudioStream" uid="uid://ds5ewrd6b3tip" path="res://GDTVAssetPack/Audio/tap.ogg" id="4_0mhnh"]
@@ -115,10 +116,20 @@ _data = {
 "RESET": SubResource("Animation_pqxi5")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4to3j"]
+render_priority = 0
+shader = ExtResource("2_7j02w")
+shader_parameter/outline_color = null
+shader_parameter/outline_width = 2.0
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mx3t8"]
+next_pass = SubResource("ShaderMaterial_4to3j")
 diffuse_mode = 3
 specular_mode = 1
 albedo_color = Color(0.8, 0.380392, 0.172549, 1)
+roughness = 0.06
+rim_enabled = true
+rim_tint = 0.0
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_leh0u"]
 radius = 0.45
@@ -211,14 +222,12 @@ blend_point_4/pos = Vector2(0, -1)
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8skvo"]
 streams_count = 1
 stream_0/stream = ExtResource("3_wfp7i")
-stream_0/weight = 1.0
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_l80nr"]
 random_pitch = 1.1
 random_volume_offset_db = 0.5
 streams_count = 1
 stream_0/stream = ExtResource("4_0mhnh")
-stream_0/weight = 1.0
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 floor_max_angle = 0.872665
@@ -233,7 +242,7 @@ libraries = {
 }
 
 [node name="ProtoMesh" type="MeshInstance3D" parent="BasePivot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(0.999998, 0.00216226, 0, -0.00216226, 0.999998, 0, 0, 0, 1, 0.00216226, 0.999998, 0)
 material_override = SubResource("StandardMaterial3D_mx3t8")
 mesh = SubResource("CapsuleMesh_leh0u")
 skeleton = NodePath("../..")
@@ -279,9 +288,6 @@ unique_name_in_owner = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../BasePivot")
-libraries = {
-"": SubResource("AnimationLibrary_56ijk")
-}
 tree_root = SubResource("AnimationNodeBlendSpace2D_e0dl0")
 anim_player = NodePath("../BasePivot/AnimationPlayer")
 parameters/blend_position = Vector2(0, 0)
@@ -292,7 +298,6 @@ parameters/blend_position = Vector2(0, 0)
 unique_name_in_owner = true
 stream = SubResource("AudioStreamRandomizer_8skvo")
 max_db = -15.0
-bus = &"SFX"
 
 [node name="RunAudio" type="AudioStreamPlayer3D" parent="Audio"]
 unique_name_in_owner = true
@@ -300,7 +305,6 @@ stream = SubResource("AudioStreamRandomizer_l80nr")
 volume_db = -8.0
 max_db = -5.0
 pitch_scale = 2.0
-bus = &"SFX"
 
 [node name="FootstepTimer" type="Timer" parent="Audio"]
 wait_time = 0.2

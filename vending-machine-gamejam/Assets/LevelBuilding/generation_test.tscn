@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2nqf5dcycf4c"]
+[gd_scene load_steps=6 format=3 uid="uid://b2nqf5dcycf4c"]
 
 [ext_resource type="MeshLibrary" uid="uid://bjp353uuacdxk" path="res://Assets/LevelBuilding/RoadParts.tres" id="1_08xhy"]
 [ext_resource type="Script" path="res://Assets/LevelBuilding/grid_map.gd" id="2_s8feq"]
 [ext_resource type="PackedScene" uid="uid://b1x8tjekyn4w0" path="res://Assets/LevelBuilding/border.tscn" id="3_euln1"]
 [ext_resource type="PackedScene" uid="uid://drjx0rsdso1u2" path="res://Assets/LevelBuilding/object_spawner.tscn" id="4_leu48"]
+[ext_resource type="PackedScene" uid="uid://vwr8ajoufse8" path="res://Controller/Player.tscn" id="5_g618v"]
 
 [node name="GenerationTest" type="Node3D"]
 
@@ -17,8 +18,8 @@ data = {
 "cells": PackedInt32Array(65533, 65533, 15, 65535, 65533, 14, 1, 65533, 13, 3, 65533, 12, 65533, 65535, 11, 65535, 65535, 10, 1, 65535, 9, 3, 65535, 8, 65533, 1, 7, 65535, 1, 6, 1, 1, 5, 3, 1, 4, 65533, 3, 3, 65535, 3, 2, 3, 3, 0, 1, 3, 1)
 }
 script = ExtResource("2_s8feq")
-width = 25
-height = 25
+width = 45
+height = 45
 erase_fraction = 0.05
 
 [node name="Border" parent="GridMap" instance=ExtResource("3_euln1")]
@@ -26,8 +27,14 @@ erase_fraction = 0.05
 [node name="ObjectSpawner" parent="GridMap" instance=ExtResource("4_leu48")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.9187, 0)
-light_energy = 9.205
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 47.3952, 0)
+visible = false
+light_energy = 2.641
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.093309, 0.995637, 0, -0.995637, 0.093309, 0, 10.8066, 0)
+transform = Transform3D(1, 0, 0, 0, -0.229591, 0.973287, 0, -0.973287, -0.229591, 0, 10.8066, 0)
+light_energy = 0.79
+light_indirect_energy = 0.35
+
+[node name="Player" parent="." instance=ExtResource("5_g618v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77476, 7.69803, 10.9075)
