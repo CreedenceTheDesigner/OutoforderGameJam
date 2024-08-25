@@ -22,6 +22,7 @@ func _ready():
 	clear()
 	make_map_border()
 	make_map()
+	record_tile_positions()
 	erase_walls()
 
 
@@ -125,3 +126,15 @@ func erase_walls():
 			set_cell_item(cell,walls, 0)
 			set_cell_item(neighbor_walls_vector, neighbor_walls, 0)
 			fill_gaps(cell,neighbor)
+
+
+func record_tile_positions():
+	var tiles = []
+	for x in range(0, width):
+		for z in range(0, height):
+			var current_cell = Vector3(x, 0, z)
+			var current_tile_type = get_cell_item(current_cell)
+			if current_tile_type > 15:
+				tiles.append(current_cell)
+	var map_size = Vector2(width, height)
+	$ObjectSpawner.generate_props(tiles, map_size)

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://drjx0rsdso1u2"]
+
+[ext_resource type="Script" path="res://Assets/LevelBuilding/object_spawner.gd" id="1_wu6bf"]
+[ext_resource type="Script" path="res://Assets/LevelBuilding/object_rotation_check.gd" id="2_6e6xb"]
+
+[node name="ObjectSpawner" type="Node"]
+script = ExtResource("1_wu6bf")
+number_of_vending_machines = null
+
+[node name="ObjectRotationCheck" type="Node" parent="."]
+script = ExtResource("2_6e6xb")
