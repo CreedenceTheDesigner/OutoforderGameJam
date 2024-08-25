@@ -8,7 +8,7 @@
 [node name="GenerationTest" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -0.204462, 0.978875, 0, -0.978875, -0.204462, 25, 200, 20)
+transform = Transform3D(1, 0, 0, 0, -0.204462, 0.978875, 0, -0.978875, -0.204462, 25, 75, 25)
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_08xhy")

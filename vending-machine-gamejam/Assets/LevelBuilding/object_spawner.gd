@@ -30,12 +30,13 @@ func place_vending_machines():
 		var allowed_rotations = $ObjectRotationCheck.look_up_rotation(tile_type)
 		if not allowed_rotations == null:
 			var tile_rotation = allowed_rotations[randi() % allowed_rotations.size() -1]
+			tile.y += tile.y + 1
 			spawn_vending_machine(tile, tile_rotation)
 		tile_list.pop_front()
 
 
 func spawn_vending_machine(tile, vending_machine_rotation):
 	var vending_machine = preload("res://Assets/LevelBuilding/vending_machines.tscn").instantiate()
-	#tile.translation = Vector3(((tile * 20) + 10))
-	#tile.rotation_degrees.y = vending_machine_rotation
+	vending_machine.position = Vector3((tile * 4))
+	vending_machine.rotation_degrees.y = vending_machine_rotation
 	add_child(vending_machine)
