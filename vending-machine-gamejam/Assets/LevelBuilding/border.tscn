@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1x8tjekyn4w0"]
+
+[ext_resource type="Script" path="res://Assets/LevelBuilding/border.gd" id="1_tm4kr"]
+
+[node name="Border" type="Node3D"]
+script = ExtResource("1_tm4kr")
+
+[node name="N_wall" type="CSGBox3D" parent="."]
+size = Vector3(20, 30, 1)
+
+[node name="S_wall" type="CSGBox3D" parent="."]
+size = Vector3(20, 30, 1)
+
+[node name="E_wall" type="CSGBox3D" parent="."]
+size = Vector3(20, 30, 1)
+
+[node name="W_wall" type="CSGBox3D" parent="."]
+size = Vector3(20, 30, 1)

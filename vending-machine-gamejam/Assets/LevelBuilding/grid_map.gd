@@ -5,11 +5,11 @@ const E = 2
 const S = 4
 const W = 8
 
-var width = 24
-var height = 24
-var spacing = 2
+@export var width = 24
+@export var height = 24
+@export var spacing = 2
 
-var erase_fraction = 0.25
+@export var erase_fraction = 0.25
 
 
 
@@ -20,9 +20,14 @@ var cell_walls = {Vector3(0,0,spacing) : N, Vector3(-spacing,0,0) : E,
 func _ready():
 	randomize()
 	clear()
+	make_map_border()
 	make_map()
 	erase_walls()
-	
+
+
+func make_map_border():
+	$Border.make_border(cell_size.x, width)
+
 func make_blank_map():
 	for x in width:
 		for z in height:
