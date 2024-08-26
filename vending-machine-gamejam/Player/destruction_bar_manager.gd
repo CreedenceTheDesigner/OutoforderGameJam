@@ -35,7 +35,7 @@ func _process(delta: float) -> void:
 		LEVEL_THREE:
 			third_level()
 	# Decrease bar over time
-	#current_bar_value -= decrease_bar * delta
+	current_bar_value -= decrease_bar * delta
 	# Update Bar Value
 	texture_progress_bar.value = current_bar_value
 
