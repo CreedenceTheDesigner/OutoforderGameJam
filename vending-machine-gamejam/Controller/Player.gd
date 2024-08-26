@@ -76,6 +76,7 @@ var zoom := min_zoom:
 @onready var run_audio: AudioStreamPlayer3D = %RunAudio
 @onready var weapon_area: Area3D = $BasePivot/WeaponArea
 @onready var attack_timer: Timer = %AttackTimer
+@onready var new_animation_player: AnimationPlayer = $BasePivot/Model/NewAnimationPlayer
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -114,6 +115,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = lerp(velocity.x, direction.x * base_speed, base_speed * delta)
 		velocity.z =  lerp(velocity.z, direction.z * base_speed, base_speed * delta)
+		new_animation_player.play("running")
 	else:
 		velocity.x = move_toward(velocity.x, 0, base_speed * delta * 5.0)
 		velocity.z = move_toward(velocity.z, 0, base_speed * delta * 5.0)
