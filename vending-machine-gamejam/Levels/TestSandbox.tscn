@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://j5hbl0jydke4"]
+[gd_scene load_steps=6 format=3 uid="uid://j5hbl0jydke4"]
 
 [ext_resource type="PackedScene" uid="uid://vwr8ajoufse8" path="res://Controller/Player.tscn" id="1_s0dty"]
+[ext_resource type="PackedScene" uid="uid://bbsfxmbf1rhr7" path="res://Destructibles/destructible_machine.tscn" id="2_r850k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_whuqc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -31,3 +32,12 @@ size = Vector3(30, 1, 30)
 
 [node name="Player" parent="." instance=ExtResource("1_s0dty")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.771209, 0.925, 0.637148)
+
+[node name="DestructibleMachine" parent="." instance=ExtResource("2_r850k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
+
+[node name="DestructibleMachine2" parent="." instance=ExtResource("2_r850k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7, 0, -5)
+
+[node name="DestructibleMachine3" parent="." instance=ExtResource("2_r850k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.1, 0, -5)

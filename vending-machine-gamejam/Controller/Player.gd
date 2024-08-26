@@ -74,7 +74,8 @@ var zoom := min_zoom:
 
 @onready var jump_audio: AudioStreamPlayer3D = %JumpAudio
 @onready var run_audio: AudioStreamPlayer3D = %RunAudio
-
+@onready var weapon_area: Area3D = $BasePivot/WeaponArea
+@onready var attack_timer: Timer = %AttackTimer
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -103,6 +104,11 @@ func _physics_process(delta: float) -> void:
 		jump_audio.play()
 		run_audio.play()
 	
+	if Input.is_action_just_pressed("attack"):
+		if attack_timer.is_stopped():
+			weapon_area.monitoring = true
+			weapon_area.visible = true
+			attack_timer.start(1)
 	# Handle movement.
 	var direction = get_movement_direction()
 	if direction:
@@ -186,3 +192,8 @@ func smooth_camera_zoom(delta: float) -> void:
 func _on_footstep_timer_timeout() -> void:
 	if is_on_floor() and get_movement_direction():
 		run_audio.play()
+
+
+func _on_attack_timer_timeout() -> void:
+	weapon_area.monitoring = false
+	weapon_area.visible = false
