@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=4 uid="uid://vwr8ajoufse8"]
+[gd_scene load_steps=43 format=4 uid="uid://vwr8ajoufse8"]
 
 [ext_resource type="Script" path="res://Controller/Player.gd" id="1_12if5"]
 [ext_resource type="Texture2D" uid="uid://b6di2rbwg8g1w" path="res://Assets/Models/Running_0.png" id="2_2wih8"]
@@ -8,7 +8,6 @@
 [ext_resource type="AudioStream" uid="uid://c4prdjc6y4kw2" path="res://GDTVAssetPack/Audio/jump.ogg" id="3_wfp7i"]
 [ext_resource type="Texture2D" uid="uid://blul16qyiwrac" path="res://Assets/Models/Running_3.png" id="3_xdse3"]
 [ext_resource type="AudioStream" uid="uid://ds5ewrd6b3tip" path="res://GDTVAssetPack/Audio/tap.ogg" id="4_0mhnh"]
-[ext_resource type="PackedScene" uid="uid://cyr441vn7v3s" path="res://Player/points_manager.tscn" id="7_uked3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uqc3d"]
 resource_name = "Ch03_Body"
@@ -1758,8 +1757,6 @@ pitch_scale = 2.0
 [node name="FootstepTimer" type="Timer" parent="Audio"]
 wait_time = 0.2
 autostart = true
-
-[node name="PointsManager" parent="." instance=ExtResource("7_uked3")]
 
 [connection signal="area_entered" from="BasePivot/WeaponArea" to="BasePivot/WeaponArea" method="_on_area_entered"]
 [connection signal="timeout" from="BasePivot/WeaponArea/AttackTimer" to="." method="_on_attack_timer_timeout"]

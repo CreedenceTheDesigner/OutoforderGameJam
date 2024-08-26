@@ -1,4 +1,17 @@
-[gd_scene format=3 uid="uid://bxcl3ftl8duar"]
+[gd_scene load_steps=7 format=3 uid="uid://bxcl3ftl8duar"]
+
+[ext_resource type="Script" path="res://Player/destruction_bar_manager.gd" id="1_iaslm"]
+[ext_resource type="FontFile" uid="uid://b8xmfcyan8cl8" path="res://Assets/Fonts/HoltwoodOneSC-Regular.ttf" id="1_thcmj"]
+[ext_resource type="Texture2D" uid="uid://cyfnnvm55svc2" path="res://Assets/UI/ProgressBar.png" id="2_ppxhq"]
+[ext_resource type="Texture2D" uid="uid://dimcr74y6urp2" path="res://Assets/UI/ProgressFrame.png" id="3_ju054"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1j6pp"]
+font = ExtResource("1_thcmj")
+font_size = 12
+
+[sub_resource type="LabelSettings" id="LabelSettings_pvpfq"]
+font = ExtResource("1_thcmj")
+font_size = 12
 
 [node name="DestructionBarManager" type="Control"]
 layout_mode = 3
@@ -7,3 +20,62 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_iaslm")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(320, 320)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+offset_right = 180.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="DestructionLabel" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Destruction Meter"
+label_settings = SubResource("LabelSettings_1j6pp")
+horizontal_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 100.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 4
+texture_under = ExtResource("2_ppxhq")
+texture_over = ExtResource("3_ju054")
+texture_progress = ExtResource("2_ppxhq")
+tint_under = Color(0.160784, 0.160784, 0.160784, 0.172549)
+tint_progress = Color(0.976471, 0.219608, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MarginContainer/VBoxContainer/TextureProgressBar"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -20.0
+offset_right = 27.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DestructionLevelLabel" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TextureProgressBar/CenterContainer"]
+layout_mode = 2
+text = "Level 1"
+label_settings = SubResource("LabelSettings_pvpfq")

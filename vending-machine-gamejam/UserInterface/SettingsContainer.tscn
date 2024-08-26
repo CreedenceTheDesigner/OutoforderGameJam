@@ -3,13 +3,13 @@
 [ext_resource type="Theme" uid="uid://bq6qbvmwxf5gm" path="res://UserInterface/UITheme.tres" id="1_ga3o8"]
 [ext_resource type="Script" path="res://UserInterface/SettingsContainer.gd" id="2_yf2ij"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cu3mp"]
-content_margin_left = 64.0
-content_margin_right = 64.0
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5dyx3"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n56m4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cu3mp"]
+content_margin_left = 64.0
+content_margin_right = 64.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8ppig"]
 content_margin_left = 64.0
@@ -79,14 +79,17 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 32
+theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_5dyx3")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_n56m4")
 theme_override_styles/tab_selected = SubResource("StyleBoxEmpty_cu3mp")
 theme_override_styles/tab_hovered = SubResource("StyleBoxEmpty_cu3mp")
 theme_override_styles/tab_unselected = SubResource("StyleBoxEmpty_cu3mp")
-theme_override_styles/tab_disabled = SubResource("StyleBoxEmpty_5dyx3")
-theme_override_styles/panel = SubResource("StyleBoxEmpty_n56m4")
+current_tab = 2
 
 [node name="Video" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
+visible = false
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="FullscreenPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/Video"]
 layout_mode = 2
@@ -123,10 +126,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-item_count = 2
 selected = 1
+item_count = 2
 popup/item_0/text = "Disabled"
-popup/item_0/id = 0
 popup/item_1/text = "FXAA"
 popup/item_1/id = 1
 
@@ -148,10 +150,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-item_count = 4
 selected = 2
+item_count = 4
 popup/item_0/text = "Disabled"
-popup/item_0/id = 0
 popup/item_1/text = "2x"
 popup/item_1/id = 1
 popup/item_2/text = "4x"
@@ -178,10 +179,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-item_count = 3
 selected = 1
+item_count = 3
 popup/item_0/text = "Low"
-popup/item_0/id = 0
 popup/item_1/text = "Medium"
 popup/item_1/id = 1
 popup/item_2/text = "High"
@@ -190,6 +190,7 @@ popup/item_2/id = 2
 [node name="Audio" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
 [node name="MasterPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/Audio"]
 layout_mode = 2
@@ -260,9 +261,9 @@ step = 0.01
 value = 0.8
 
 [node name="Gameplay" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
-visible = false
 layout_mode = 2
 theme_override_constants/separation = 16
+metadata/_tab_index = 2
 
 [node name="FOVPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/Gameplay"]
 layout_mode = 2
@@ -307,10 +308,9 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 size_flags_vertical = 4
-item_count = 5
 selected = 2
+item_count = 5
 popup/item_0/text = "Very Low"
-popup/item_0/id = 0
 popup/item_1/text = "Low"
 popup/item_1/id = 1
 popup/item_2/text = "Medium"
@@ -323,6 +323,7 @@ popup/item_4/id = 4
 [node name="Debug" type="VBoxContainer" parent="VBoxContainer/TabContainer"]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 3
 
 [node name="ReloadPanel" type="PanelContainer" parent="VBoxContainer/TabContainer/Debug"]
 layout_mode = 2

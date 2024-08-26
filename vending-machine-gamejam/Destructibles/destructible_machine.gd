@@ -7,6 +7,7 @@ extends Area3D
 		current_health = value
 		if current_health <= 0:
 			SignalManager.small_points.emit()
+			SignalManager.destruction_up.emit()
 			queue_free()
 
 # Called when the node enters the scene tree for the first time.
