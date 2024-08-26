@@ -1,9 +1,9 @@
 extends Node 
 
 var tiles = []
-var map_size =Vector2()
+var map_size = Vector2()
 
-var number_of_vending_machines = 40
+var number_of_vending_machines = 200
 
 func generate_props(tile_list, size):
 	tiles = tile_list

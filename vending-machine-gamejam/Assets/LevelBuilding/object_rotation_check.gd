@@ -5,13 +5,13 @@ func look_up_rotation(tile):
 	match tile :
 		0:
 			rotations = null
-		1,3,5,7,9,11:
+		17,18:
 			rotations.append(0)
-		2,3,7,7,10,11,14:
+		16,17,18:
 			rotations.append(90)
-		4,5,6,7,12,13,14:
+		16,17,18:
 			rotations.append(180)
-		8,9,10,10,12,14:
+		15,16,17,18:
 			rotations.append(270)
 	
 	return rotations
