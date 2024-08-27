@@ -29,6 +29,10 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Stores the direction the player is trying to look this frame.
 var _look := Vector2.ZERO
 
+enum state {IDLE, RUNNING, ATTACKING}
+
+@onready var current_state = state.IDLE
+
 enum VIEW {
 	FIRST_PERSON,
 	THIRD_PERSON_BACK
@@ -76,55 +80,36 @@ var zoom := min_zoom:
 @onready var run_audio: AudioStreamPlayer3D = %RunAudio
 @onready var weapon_area: Area3D = $BasePivot/WeaponArea
 @onready var attack_timer: Timer = %AttackTimer
-@onready var new_animation_player: AnimationPlayer = $BasePivot/Model/NewAnimationPlayer
+@onready var animation_player: AnimationPlayer = $BasePivot/TestAnims/AnimationPlayer
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Whenever the player loads in, give the autoload ui a reference to itself.
 	UserInterface.update_player(self)
 
+func _process(delta: float) -> void:
+	match current_state:
+		state.IDLE:
+			_idle(delta)
+			print("idle")
+		state.RUNNING:
+			_running(delta)
+			print("running")
+		state.ATTACKING:
+			print("attacking")
+			_attacking()
+		
+	if Input.is_action_just_pressed("attack"):
+		set_physics_process(false)
+		current_state = state.ATTACKING
 
 func _physics_process(delta: float) -> void:
+
+			
 	frame_camera_rotation()
 	smooth_camera_zoom(delta)
-	
-	# Add gravity.
-	if not is_on_floor():
-		# if holding jump and ascending be floaty.
-		if velocity.y >= 0 and Input.is_action_pressed("ui_accept"):
-			velocity.y -= gravity * delta
-		else:
-			# Double fall speed, after peak of jump or release of jump button.
-			velocity.y -= gravity * delta * fall_multiplier
+
 		
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		# Projectile motion to turn jump height into a velocity.
-		velocity.y = sqrt(jump_height * 2.0 * gravity)
-		jump_particles.restart()
-		jump_audio.play()
-		run_audio.play()
-	
-	if Input.is_action_just_pressed("attack"):
-		if attack_timer.is_stopped():
-			weapon_area.monitoring = true
-			weapon_area.visible = true
-			attack_timer.start(1)
-	# Handle movement.
-	var direction = get_movement_direction()
-	if direction:
-		velocity.x = lerp(velocity.x, direction.x * base_speed, base_speed * delta)
-		velocity.z =  lerp(velocity.z, direction.z * base_speed, base_speed * delta)
-		new_animation_player.play("running")
-	else:
-		velocity.x = move_toward(velocity.x, 0, base_speed * delta * 5.0)
-		velocity.z = move_toward(velocity.z, 0, base_speed * delta * 5.0)
-	
-	# Emit run particles when moving on the floor.
-	run_particles.emitting = not direction.is_zero_approx() and is_on_floor()
-		
-	update_animation_tree()
-	move_and_slide()
 
 # Turn movent inputs into a locally oriented vector.
 func get_movement_direction() -> Vector3:
@@ -199,3 +184,56 @@ func _on_footstep_timer_timeout() -> void:
 func _on_attack_timer_timeout() -> void:
 	weapon_area.monitoring = false
 	weapon_area.visible = false
+	current_state = state.IDLE
+	set_physics_process(true)
+
+func _idle(delta: float):
+	animation_player.play("Idle")
+	_player_movement(delta)
+	
+	
+func _running(delta: float):
+	animation_player.play("Running")
+	_player_movement(delta)
+	
+func _attacking():
+	if attack_timer.is_stopped():
+		animation_player.play("LongSwing", -1, 3)
+		weapon_area.monitoring = true
+		weapon_area.visible = true
+		attack_timer.start(1.5)
+	
+func _player_movement(delta: float):
+		# Add gravity.
+	if not is_on_floor():
+		# if holding jump and ascending be floaty.
+		if velocity.y >= 0 and Input.is_action_pressed("ui_accept"):
+			velocity.y -= gravity * delta
+		else:
+			# Double fall speed, after peak of jump or release of jump button.
+			velocity.y -= gravity * delta * fall_multiplier
+		
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		# Projectile motion to turn jump height into a velocity.
+		velocity.y = sqrt(jump_height * 2.0 * gravity)
+		jump_particles.restart()
+		jump_audio.play()
+		run_audio.play()
+
+	# Handle movement.
+	var direction = get_movement_direction()
+	if direction:
+		velocity.x = lerp(velocity.x, direction.x * base_speed, base_speed * delta)
+		velocity.z =  lerp(velocity.z, direction.z * base_speed, base_speed * delta)
+		current_state = state.RUNNING
+	else:
+		velocity.x = move_toward(velocity.x, 0, base_speed * delta * 5.0)
+		velocity.z = move_toward(velocity.z, 0, base_speed * delta * 5.0)
+		current_state = state.IDLE
+	
+	# Emit run particles when moving on the floor.
+	run_particles.emitting = not direction.is_zero_approx() and is_on_floor()
+		
+	#update_animation_tree()
+	move_and_slide()

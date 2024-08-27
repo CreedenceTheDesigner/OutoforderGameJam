@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://ce206ox0278qc"
-path="res://.godot/imported/TestAnims.fbx-ad6a6f2c6c3d6cc5aee43f98643eb81e.scn"
+path="res://.godot/imported/TestAnims.fbx-96163bfa778363bd29e8dae5310fa372.scn"
 
 [deps]
 
-source_file="res://Assets/LevelBuilding/TestAnims.fbx"
-dest_files=["res://.godot/imported/TestAnims.fbx-ad6a6f2c6c3d6cc5aee43f98643eb81e.scn"]
+source_file="res://Assets/Models/TestAnims.fbx"
+dest_files=["res://.godot/imported/TestAnims.fbx-96163bfa778363bd29e8dae5310fa372.scn"]
 
 [params]
 
@@ -31,7 +31,19 @@ animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Armature/Skeleton3D": {
+"rest_pose/external_animation_library": null
+},
+"PATH:Armature_001/Skeleton3D": {
+"rest_pose/external_animation_library": null
+},
+"PATH:Armature_002/Skeleton3D": {
+"rest_pose/external_animation_library": null
+}
+}
+}
 fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

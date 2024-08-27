@@ -5,12 +5,11 @@ enum {LEVEL_ONE, LEVEL_TWO, LEVEL_THREE}
 @onready var level = LEVEL_ONE
 
 @export var destruction_add := 30
-@export var decrease_bar := 3
+@export var decrease_bar := .3
 @export var starting_bar_value := 80
 @onready var current_bar_value := starting_bar_value:
 	set(value):
 		current_bar_value = value
-		print(str(current_bar_value))
 		if current_bar_value >= 100:
 			level = LEVEL_TWO
 		if current_bar_value >= 200:
