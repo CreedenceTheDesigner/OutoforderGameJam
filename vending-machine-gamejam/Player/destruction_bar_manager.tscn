@@ -51,6 +51,7 @@ horizontal_alignment = 1
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+max_value = 1000.0
 value = 100.0
 allow_greater = true
 allow_lesser = true

@@ -23,7 +23,6 @@ glow_enabled = true
 points = PackedVector3Array(-0.20298, 0.210106, -0.5031, 0.4727, 1.75044, 0.469708, 0.468436, 1.74264, -0.4727, -0.4727, 1.74829, 0.468408, 0.4727, 0.0195633, 0.469708, -0.4727, 0.0217054, 0.468408, -0.469607, 1.74264, -0.4727, 0.468436, 0.0273605, -0.4727, -0.469607, 0.0273605, -0.4727, 0.312278, 1.75576, 0.4727, 0.3395, 0.0142446, 0.4727)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_v7rmv"]
-load_path = "res://.godot/imported/Machine1Test_ColorPallete.png-8a0e1e845f9fb3883a5e7e25ec0484bc.s3tc.ctex"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o34yh"]
 next_pass = ExtResource("5_pradr")
