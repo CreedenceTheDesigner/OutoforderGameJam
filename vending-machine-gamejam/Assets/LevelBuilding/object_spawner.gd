@@ -30,7 +30,8 @@ func place_vending_machines():
 		var allowed_rotations = $ObjectRotationCheck.look_up_rotation(tile_type)
 		if not allowed_rotations == null:
 			var tile_rotation = allowed_rotations[randi() % allowed_rotations.size() -1]
-			tile.y += tile.y + 1
+			tile.y += tile.y + .125
+			
 			spawn_vending_machine(tile, tile_rotation)
 		tile_list.pop_front()
 

@@ -1,29 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://v4j0m7wvt1o4"]
+[gd_scene load_steps=2 format=3 uid="uid://v4j0m7wvt1o4"]
 
-[ext_resource type="ArrayMesh" uid="uid://bi7qdimptln8y" path="res://Assets/LevelBuilding/VendingMachineTest.obj" id="1_13fq2"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vvqv6"]
-albedo_color = Color(0.553215, 0.649417, 0.321423, 1)
-emission_enabled = true
-emission = Color(0.314316, 0.314316, 0.314316, 1)
-emission_energy_multiplier = 5.85
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x8lq"]
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_o6r1b"]
+[ext_resource type="PackedScene" uid="uid://bbsfxmbf1rhr7" path="res://Destructibles/destructible_machine.tscn" id="1_fvfga"]
 
 [node name="VendingMachines" type="Node3D"]
 
-[node name="TestMachine" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.83398, 0.0203809, -0.0978243)
-sleeping = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="TestMachine"]
-mesh = ExtResource("1_13fq2")
-surface_material_override/0 = SubResource("StandardMaterial3D_vvqv6")
-surface_material_override/1 = SubResource("StandardMaterial3D_5x8lq")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TestMachine"]
-transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.0106061, 0.227868, 0.00103095)
-shape = SubResource("BoxShape3D_o6r1b")
+[node name="DestructibleMachine" parent="." instance=ExtResource("1_fvfga")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.6)
