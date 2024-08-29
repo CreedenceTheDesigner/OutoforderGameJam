@@ -4,9 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://2row6n8uacn5" path="res://Assets/Models/Assetts_ColorPallete.png" id="2_s2vwj"]
 [ext_resource type="Material" uid="uid://caeynnspmoah8" path="res://Controller/Outline.tres" id="3_tgwja"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_gejit"]
-points = PackedVector3Array(-0.20298, 0.210106, -0.5031, 0.4727, 1.75044, 0.469708, 0.468436, 1.74264, -0.4727, -0.4727, 1.74829, 0.468408, 0.4727, 0.0195633, 0.469708, -0.4727, 0.0217054, 0.468408, -0.469607, 1.74264, -0.4727, 0.468436, 0.0273605, -0.4727, -0.469607, 0.0273605, -0.4727, 0.312278, 1.75576, 0.4727, 0.3395, 0.0142446, 0.4727)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o34yh"]
 next_pass = ExtResource("3_tgwja")
 albedo_texture = ExtResource("2_s2vwj")
@@ -49,6 +46,9 @@ bind/2/name = &"Bone.002"
 bind/2/bone = -1
 bind/2/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.06819, 0)
 
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_atwh8"]
+points = PackedVector3Array(-0.20298, 0.210106, -0.5031, 0.4727, 1.75044, 0.469708, 0.468436, 1.74264, -0.4727, -0.4727, 1.74829, 0.468408, 0.4727, 0.0195633, 0.469708, -0.4727, 0.0217054, 0.468408, -0.469607, 1.74264, -0.4727, 0.468436, 0.0273605, -0.4727, -0.469607, 0.0273605, -0.4727, 0.312278, 1.75576, 0.4727, 0.3395, 0.0142446, 0.4727)
+
 [sub_resource type="Animation" id="Animation_t4f8g"]
 resource_name = "ArmatureAction"
 length = 0.833333
@@ -89,9 +89,6 @@ _data = {
 [node name="DestructibleMachine" type="Area3D" groups=["destructible"]]
 script = ExtResource("1_6on7o")
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_gejit")
-
 [node name="Armature" type="Node3D" parent="."]
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Armature"]
@@ -122,7 +119,15 @@ material_override = SubResource("StandardMaterial3D_o34yh")
 mesh = SubResource("ArrayMesh_jpkti")
 skin = SubResource("Skin_rf5vg")
 
+[node name="StaticBody3D" type="StaticBody3D" parent="Armature/Skeleton3D/Machine1"]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Armature/Skeleton3D/Machine1/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_atwh8")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_gq2s2")
 }
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_atwh8")
