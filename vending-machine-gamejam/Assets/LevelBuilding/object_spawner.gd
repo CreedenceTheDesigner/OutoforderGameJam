@@ -53,7 +53,7 @@ func place_shelves_():
 		tile_list.pop_front()
 
 func spawn_vending_machine(tile, vending_machine_rotation):
-	var vending_machine = preload("res://Assets/LevelBuilding/vending_machines.tscn").instantiate()
+	var vending_machine = preload("res://Destructibles/small_destructible_machine.tscn").instantiate()
 	#var vending_machine2 = preload()
 	vending_machine.position = Vector3(((tile.x * 4) +2),tile.y,((tile.z * 4) + 4))
 	vending_machine.rotation_degrees.y = vending_machine_rotation
