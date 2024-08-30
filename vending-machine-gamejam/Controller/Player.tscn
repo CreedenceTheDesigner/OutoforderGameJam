@@ -1,9 +1,10 @@
-[gd_scene load_steps=44 format=4 uid="uid://vwr8ajoufse8"]
+[gd_scene load_steps=45 format=4 uid="uid://vwr8ajoufse8"]
 
 [ext_resource type="Script" path="res://Controller/Player.gd" id="1_12if5"]
 [ext_resource type="PackedScene" uid="uid://mcww70jogye0" path="res://Assets/Models/8_26_player_character.tscn" id="2_2cioj"]
 [ext_resource type="Texture2D" uid="uid://b6di2rbwg8g1w" path="res://Assets/Models/Running_0.png" id="2_2wih8"]
 [ext_resource type="Script" path="res://Controller/SmoothCamera.gd" id="2_e12si"]
+[ext_resource type="PackedScene" uid="uid://vpc0gsdrlme4" path="res://Particles/destruction_particles.tscn" id="2_que73"]
 [ext_resource type="Material" uid="uid://caeynnspmoah8" path="res://Controller/Outline.tres" id="3_1sr4t"]
 [ext_resource type="Script" path="res://Controller/weapon_area.gd" id="3_jj0ow"]
 [ext_resource type="AudioStream" uid="uid://c4prdjc6y4kw2" path="res://GDTVAssetPack/Audio/jump.ogg" id="3_wfp7i"]
@@ -1188,6 +1189,7 @@ stream_0/stream = ExtResource("4_0mhnh")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 floor_max_angle = 0.872665
 script = ExtResource("1_12if5")
+destruction_particles = ExtResource("2_que73")
 
 [node name="BasePivot" type="Node3D" parent="."]
 transform = Transform3D(0.999403, -0.0341708, -0.00518501, 0.0345599, 0.989665, 0.139173, 0.000375782, -0.139269, 0.990255, 0, -1, 0)

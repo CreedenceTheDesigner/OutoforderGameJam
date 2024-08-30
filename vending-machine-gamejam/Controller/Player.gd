@@ -24,6 +24,7 @@ class_name Player
 ## How quickly to zoom the camera
 @export var zoom_sensitivity: float = 0.4
 
+@export var destruction_particles : PackedScene
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Stores the direction the player is trying to look this frame.
@@ -199,6 +200,9 @@ func _running(delta: float):
 func _attacking():
 	if attack_timer.is_stopped():
 		animation_player.play("LongSwing", -1, 3)
+		var smash = destruction_particles.instantiate()
+		add_child(smash)
+		smash.global_position = weapon_area.global_position
 		weapon_area.monitoring = true
 		weapon_area.visible = true
 		attack_timer.start(1.5)
