@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var max_health := 80
+@export var max_health := 40
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 

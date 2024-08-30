@@ -1,17 +1,17 @@
-[gd_scene load_steps=11 format=4 uid="uid://bbsfxmbf1rhr7"]
+[gd_scene load_steps=11 format=4 uid="uid://ci1x7a7khnuum"]
 
-[ext_resource type="Script" path="res://Destructibles/destructible_machine.gd" id="1_6on7o"]
-[ext_resource type="Texture2D" uid="uid://2row6n8uacn5" path="res://Assets/Models/Assetts_ColorPallete.png" id="2_s2vwj"]
-[ext_resource type="Material" uid="uid://caeynnspmoah8" path="res://Controller/Outline.tres" id="3_tgwja"]
+[ext_resource type="Script" path="res://Destructibles/extra_large_destructible_machine.gd" id="1_g1cp8"]
+[ext_resource type="Texture2D" uid="uid://2row6n8uacn5" path="res://Assets/Models/Assetts_ColorPallete.png" id="2_2b67s"]
+[ext_resource type="Material" uid="uid://caeynnspmoah8" path="res://Controller/Outline.tres" id="3_d4o6i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o34yh"]
-next_pass = ExtResource("3_tgwja")
-albedo_texture = ExtResource("2_s2vwj")
+next_pass = ExtResource("3_d4o6i")
+albedo_texture = ExtResource("2_2b67s")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x5yxu"]
 resource_name = "BasicColor"
 cull_mode = 2
-albedo_texture = ExtResource("2_s2vwj")
+albedo_texture = ExtResource("2_2b67s")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_jpkti"]
 resource_name = "Assetts_Cube_002"
@@ -50,7 +50,7 @@ bind/2/pose = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.06819, 0)
 points = PackedVector3Array(-0.20298, 0.210106, -0.5031, 0.4727, 1.75044, 0.469708, 0.468436, 1.74264, -0.4727, -0.4727, 1.74829, 0.468408, 0.4727, 0.0195633, 0.469708, -0.4727, 0.0217054, 0.468408, -0.469607, 1.74264, -0.4727, 0.468436, 0.0273605, -0.4727, -0.469607, 0.0273605, -0.4727, 0.312278, 1.75576, 0.4727, 0.3395, 0.0142446, 0.4727)
 
 [sub_resource type="Animation" id="Animation_t4f8g"]
-resource_name = "ArmatureAction"
+resource_name = "Hit"
 length = 0.833333
 tracks/0/type = "rotation_3d"
 tracks/0/imported = true
@@ -80,14 +80,28 @@ tracks/3/path = NodePath("Armature/Skeleton3D:Bone.002")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.0333333, 1, 1.00011, 1.00011, 1.00011, 0.0666667, 1, 1.00085, 1.00085, 1.00085, 0.1, 1, 1.00287, 1.00287, 1.00287, 0.133333, 1, 1.0068, 1.0068, 1.0068, 0.166667, 1, 1.01328, 1.01328, 1.01328, 0.2, 1, 1.03335, 1.03335, 1.03335, 0.233333, 1, 1.06968, 1.06968, 1.06968, 0.266667, 1, 1.11037, 1.11037, 1.11037, 0.3, 1, 1.14352, 1.14352, 1.14352, 0.333333, 1, 1.15721, 1.15721, 1.15721, 0.366667, 1, 1.14781, 1.14781, 1.14781, 0.4, 1, 1.12538, 1.12538, 1.12538, 0.433333, 1, 1.09862, 1.09862, 1.09862, 0.466667, 1, 1.0762, 1.0762, 1.0762, 0.5, 1, 1.06679, 1.06679, 1.06679, 0.533333, 1, 1.06992, 1.06992, 1.06992, 0.566667, 1, 1.07739, 1.07739, 1.07739, 0.6, 1, 1.0863, 1.0863, 1.0863, 0.633333, 1, 1.09376, 1.09376, 1.09376, 0.666667, 1, 1.09689, 1.09689, 1.09689, 0.7, 1, 1.08681, 1.08681, 1.08681, 0.733333, 1, 1.06279, 1.06279, 1.06279, 0.766667, 1, 1.03411, 1.03411, 1.03411, 0.8, 1, 1.01008, 1.01008, 1.01008, 0.833333, 1, 1, 1, 1)
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.833333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"check_death"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gq2s2"]
 _data = {
-"ArmatureAction": SubResource("Animation_t4f8g")
+"Hit": SubResource("Animation_t4f8g")
 }
 
-[node name="DestructibleMachine" type="Area3D" groups=["destructible"]]
-script = ExtResource("1_6on7o")
+[node name="ExtraLargeDestructible" type="Area3D" groups=["destructible"]]
+script = ExtResource("1_g1cp8")
 
 [node name="Armature" type="Node3D" parent="."]
 

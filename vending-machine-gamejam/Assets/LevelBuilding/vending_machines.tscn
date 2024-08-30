@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://v4j0m7wvt1o4"]
 
-[ext_resource type="PackedScene" uid="uid://bbsfxmbf1rhr7" path="res://Destructibles/destructible_machine.tscn" id="1_fvfga"]
+[ext_resource type="PackedScene" uid="uid://bbsfxmbf1rhr7" path="res://Destructibles/small_destructible_machine.tscn" id="1_fvfga"]
 
 [node name="VendingMachines" type="Node3D"]
 

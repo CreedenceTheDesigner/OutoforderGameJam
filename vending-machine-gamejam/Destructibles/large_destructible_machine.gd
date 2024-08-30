@@ -1,6 +1,6 @@
 extends Area3D
 
-@export var max_health := 80
+@export var max_health := 120
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -24,6 +24,6 @@ func smash(damage: int):
 
 func check_death():
 	if current_health < 0:
-		SignalManager.small_points.emit()
+		SignalManager.large_points.emit()
 		queue_free()
 		

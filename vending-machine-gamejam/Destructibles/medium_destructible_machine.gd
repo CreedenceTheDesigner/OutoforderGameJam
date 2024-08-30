@@ -24,6 +24,6 @@ func smash(damage: int):
 
 func check_death():
 	if current_health < 0:
-		SignalManager.small_points.emit()
+		SignalManager.medium_points.emit()
 		queue_free()
 		

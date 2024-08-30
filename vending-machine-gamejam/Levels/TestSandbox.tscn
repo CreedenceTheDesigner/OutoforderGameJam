@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=4 uid="uid://j5hbl0jydke4"]
 
 [ext_resource type="PackedScene" uid="uid://vwr8ajoufse8" path="res://Controller/Player.tscn" id="1_s0dty"]
-[ext_resource type="PackedScene" uid="uid://bbsfxmbf1rhr7" path="res://Destructibles/destructible_machine.tscn" id="2_r850k"]
+[ext_resource type="PackedScene" uid="uid://bbsfxmbf1rhr7" path="res://Destructibles/small_destructible_machine.tscn" id="2_r850k"]
 [ext_resource type="Script" path="res://Destructibles/destructible_machine.gd" id="3_yr3vs"]
 [ext_resource type="Texture2D" uid="uid://2row6n8uacn5" path="res://Assets/Models/Assetts_ColorPallete.png" id="4_wyyky"]
 [ext_resource type="Material" uid="uid://caeynnspmoah8" path="res://Controller/Outline.tres" id="5_pradr"]
