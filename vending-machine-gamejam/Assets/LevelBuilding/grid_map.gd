@@ -9,7 +9,8 @@ const W = 8
 @export var height = 24
 @export var spacing = 2
 
-@export var erase_fraction = 0.25
+@export var erase_fraction = 0.05
+
 
 
 
@@ -39,7 +40,7 @@ func make_blank_map():
 
 
 func pick_building():
-	var possible_buildings = [15, 16, 17, 18]
+	var possible_buildings = [15]
 	var building = possible_buildings[randi() % possible_buildings.size() -1]
 	return building
 	

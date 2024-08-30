@@ -1725,7 +1725,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.57, 0)
 [node name="SmoothCamera" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
 cull_mask = 1047549
-current = true
 script = ExtResource("2_e12si")
 target = NodePath("../CameraTarget")
 
