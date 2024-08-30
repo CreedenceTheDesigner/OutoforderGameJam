@@ -1,5 +1,3 @@
-[gd_scene load_steps=2 format=3 uid="uid://cxh3a4lbsvct1"]
+[gd_scene format=3 uid="uid://cxh3a4lbsvct1"]
 
-[ext_resource type="PackedScene" uid="uid://bnd1mbcb6qeox" path="res://Assets/Models/Assetts.glb" id="1_ab852"]
-
-[node name="Assetts" instance=ExtResource("1_ab852")]
+[node name="Assetts"]

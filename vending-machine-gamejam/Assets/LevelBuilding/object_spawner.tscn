@@ -1,10 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://drjx0rsdso1u2"]
+[gd_scene load_steps=6 format=3 uid="uid://drjx0rsdso1u2"]
 
 [ext_resource type="Script" path="res://Assets/LevelBuilding/object_spawner.gd" id="1_wu6bf"]
 [ext_resource type="Script" path="res://Assets/LevelBuilding/object_rotation_check.gd" id="2_6e6xb"]
+[ext_resource type="PackedScene" path="res://Destructibles/small_destructible_machine.tscn" id="2_nj2ap"]
+[ext_resource type="PackedScene" uid="uid://6jthu37lpw2x" path="res://Assets/LevelBuilding/building_3.tscn" id="3_d0y0t"]
+[ext_resource type="PackedScene" uid="uid://b76g153eurtuw" path="res://Assets/LevelBuilding/Shelf1.tscn" id="4_c5mfp"]
 
 [node name="ObjectSpawner" type="Node"]
 script = ExtResource("1_wu6bf")
+machine1 = ExtResource("2_nj2ap")
+pallet = ExtResource("3_d0y0t")
+shelves = ExtResource("4_c5mfp")
 
 [node name="ObjectRotationCheck" type="Node" parent="."]
 script = ExtResource("2_6e6xb")

@@ -140,3 +140,15 @@ func record_tile_positions():
 				tiles.append(current_cell)
 	var map_size = Vector2(width, height)
 	$ObjectSpawner.generate_props(tiles, map_size)
+
+func record_road_positions():
+	var tiles = []
+	for x in range(0, width):
+		for z in range(0, height):
+			var current_cell = Vector3(x, 0, z)
+			var current_tile_type = get_cell_item(current_cell)
+			print(current_tile_type)
+			if current_tile_type < 14:
+				tiles.append(current_cell)
+	var map_size = Vector2(width, height)
+	$ObjectSpawner.generate_road(tiles, map_size)

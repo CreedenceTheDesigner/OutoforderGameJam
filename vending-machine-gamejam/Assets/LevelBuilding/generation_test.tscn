@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b2nqf5dcycf4c"]
+[gd_scene load_steps=7 format=3 uid="uid://b2nqf5dcycf4c"]
 
 [ext_resource type="MeshLibrary" uid="uid://cmhbkty0ctwnt" path="res://Assets/Models/RoadParts.tres" id="2_gqc6c"]
 [ext_resource type="Script" path="res://Assets/LevelBuilding/grid_map.gd" id="2_s8feq"]
 [ext_resource type="PackedScene" uid="uid://b1x8tjekyn4w0" path="res://Assets/LevelBuilding/border.tscn" id="3_euln1"]
 [ext_resource type="PackedScene" uid="uid://drjx0rsdso1u2" path="res://Assets/LevelBuilding/object_spawner.tscn" id="4_leu48"]
 [ext_resource type="PackedScene" uid="uid://vwr8ajoufse8" path="res://Controller/Player.tscn" id="5_g618v"]
+[ext_resource type="PackedScene" uid="uid://dulxfiyk32pkr" path="res://Destructibles/medium_destructible_machine.tscn" id="6_6spc7"]
 
 [node name="GenerationTest" type="Node3D"]
 
@@ -29,6 +30,7 @@ script = ExtResource("2_s8feq")
 [node name="Border" parent="GridMap" instance=ExtResource("3_euln1")]
 
 [node name="ObjectSpawner" parent="GridMap" instance=ExtResource("4_leu48")]
+machine2 = ExtResource("6_6spc7")
 
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 75.0322, 0)
