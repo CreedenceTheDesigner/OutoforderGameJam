@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b2nqf5dcycf4c"]
+[gd_scene load_steps=15 format=3 uid="uid://b2nqf5dcycf4c"]
 
 [ext_resource type="MeshLibrary" uid="uid://cmhbkty0ctwnt" path="res://Assets/Models/RoadParts.tres" id="2_gqc6c"]
 [ext_resource type="Script" path="res://Assets/LevelBuilding/grid_map.gd" id="2_s8feq"]
@@ -12,7 +12,25 @@
 [ext_resource type="PackedScene" uid="uid://cf2qbq2kbhprd" path="res://Destructibles/large_destructible_machine.tscn" id="10_m4j4l"]
 [ext_resource type="PackedScene" uid="uid://c3sabnqnr4qi0" path="res://Destructibles/extralarge_destructible_machine.tscn" id="11_qetbm"]
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a4abr"]
+sky_top_color = Color(0.120129, 0.485033, 0.651906, 1)
+sky_horizon_color = Color(0.580032, 0.663508, 0.696227, 1)
+sky_energy_multiplier = 1.75
+ground_horizon_color = Color(0.580032, 0.663508, 0.696227, 1)
+
+[sub_resource type="Sky" id="Sky_6xvbb"]
+sky_material = SubResource("ProceduralSkyMaterial_a4abr")
+
+[sub_resource type="Environment" id="Environment_4qryc"]
+background_mode = 2
+sky = SubResource("Sky_6xvbb")
+tonemap_mode = 2
+glow_enabled = true
+
 [node name="GenerationTest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4qryc")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 47.3952, 0)
@@ -31,10 +49,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.77476, 7.69803, 10.9075)
 mesh_library = ExtResource("2_gqc6c")
 cell_size = Vector3(4, 1, 4)
 script = ExtResource("2_s8feq")
+width = 36
+height = 36
 
 [node name="Border" parent="GridMap" instance=ExtResource("3_euln1")]
 
 [node name="ObjectSpawner" parent="GridMap" instance=ExtResource("4_leu48")]
+number_of_vend1 = 80
+number_of_vend2 = 30
+number_of_vend3 = 20
+number_of_vend4 = 10
 pallet = ExtResource("6_xr1li")
 machine2 = ExtResource("6_6spc7")
 barricade = ExtResource("7_wl80c")

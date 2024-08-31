@@ -1,0 +1,84 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk4a6nljg568o"]
+
+[ext_resource type="FontFile" uid="uid://b8xmfcyan8cl8" path="res://Assets/Fonts/HoltwoodOneSC-Regular.ttf" id="1_lljqo"]
+[ext_resource type="Script" path="res://Menus/start_menu.gd" id="1_ti3ms"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wwb8w"]
+font = ExtResource("1_lljqo")
+font_size = 72
+
+[node name="StartMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ti3ms")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 180
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 180
+theme_override_constants/margin_bottom = 120
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 145
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "No More Soda"
+label_settings = SubResource("LabelSettings_wwb8w")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="RetryButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lljqo")
+theme_override_font_sizes/font_size = 24
+text = "Restart"
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lljqo")
+theme_override_font_sizes/font_size = 24
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_lljqo")
+theme_override_font_sizes/font_size = 24
+text = "Close Game"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 120.0
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/RetryButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

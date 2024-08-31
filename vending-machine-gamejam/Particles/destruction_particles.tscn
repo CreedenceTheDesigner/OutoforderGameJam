@@ -10,9 +10,10 @@ point_count = 2
 curve = SubResource("Curve_0omu6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rcyog"]
+direction = Vector3(1, 1, 0)
 spread = 180.0
 initial_velocity_min = 1.0
-initial_velocity_max = 5.0
+initial_velocity_max = 8.0
 scale_min = 0.0
 scale_curve = SubResource("CurveTexture_xbfgy")
 

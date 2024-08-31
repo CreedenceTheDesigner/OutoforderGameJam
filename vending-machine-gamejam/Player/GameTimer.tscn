@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://caiikm417c14a"]
+
+[ext_resource type="Script" path="res://Player/game_timer.gd" id="1_le6rp"]
+[ext_resource type="FontFile" uid="uid://b8xmfcyan8cl8" path="res://Assets/Fonts/HoltwoodOneSC-Regular.ttf" id="4_n4syu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5866l"]
+font = ExtResource("4_n4syu")
+font_size = 64
+
+[node name="GameTime" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_le6rp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 631.0
+offset_bottom = 143.0
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Timer"
+label_settings = SubResource("LabelSettings_5866l")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

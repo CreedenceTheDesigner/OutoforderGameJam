@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4mrqfvtlycnc"]
+[gd_scene load_steps=17 format=3 uid="uid://b4mrqfvtlycnc"]
 
 [ext_resource type="Script" path="res://UserInterface/UserInterface.gd" id="1_pjpe8"]
 [ext_resource type="Theme" uid="uid://bq6qbvmwxf5gm" path="res://UserInterface/UITheme.tres" id="2_rwlv8"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" uid="uid://wn6mnfchf1w7" path="res://UserInterface/ScreenSpaceBlur.tres" id="4_kynqp"]
 [ext_resource type="PackedScene" uid="uid://sbl4rscivr8g" path="res://UserInterface/SettingsContainer.tscn" id="5_qrem4"]
 [ext_resource type="PackedScene" uid="uid://bxcl3ftl8duar" path="res://Player/destruction_bar_manager.tscn" id="5_sewkw"]
+[ext_resource type="PackedScene" uid="uid://caiikm417c14a" path="res://Player/GameTimer.tscn" id="8_1inde"]
 
 [sub_resource type="GDScript" id="GDScript_ivi4s"]
 script/source = "extends MarginContainer
@@ -211,6 +212,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="GameTime" parent="." instance=ExtResource("8_1inde")]
 
 [connection signal="pressed" from="PauseScreen/PauseContainer/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="PauseScreen/PauseContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]

@@ -140,18 +140,17 @@ func _process(delta: float) -> void:
 		state.ATTACK:
 			print("attacking")
 			_attacking()
-		#state.ATTACK2:
-			#print("second attack")
-			#_attacking2()
+		state.ATTACK2:
+			print("second attack")
+			_attacking2()
 		
 	if Input.is_action_just_pressed("attack") and is_on_floor():
 		if not is_attacking:
 			current_state = state.ATTACK
-			weapon_area.monitoring = true
-		#if is_attacking:
-			#current_state = state.ATTACK2
-			#weapon_area.monitoring = true
-
+			
+	if Input.is_action_just_pressed("heavyattack") and is_on_floor():
+		if not is_attacking:
+			current_state = state.ATTACK2
 func _physics_process(delta: float) -> void:
 
 			
@@ -245,16 +244,19 @@ func _running(delta: float):
 	
 func _attacking():
 	if attack_timer.is_stopped():
+		weapon_area.damage = 60
 		animation_player.play("OverhandStrike")
 		attack_timer.start(1)
 		state_timer.start(1)
 		is_attacking = true
 	
-#func _attacking2():
-	#if state_timer.get_time_left() and attack_timer_2.is_stopped():
-		#animation_player.queue("BackHand")
-		#attack_timer_2.start(1)
-		#state_timer.start(1)
+func _attacking2():
+	if attack_timer_2.is_stopped():
+		weapon_area.damage = 80
+		animation_player.play("HeavyStrike")
+		attack_timer_2.start(1)
+		state_timer.start(1)
+		is_attacking = true
 	
 func _player_movement(delta: float):
 		# Add gravity.

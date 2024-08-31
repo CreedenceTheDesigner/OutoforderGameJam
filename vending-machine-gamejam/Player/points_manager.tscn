@@ -1,21 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://cyr441vn7v3s"]
+[gd_scene load_steps=6 format=3 uid="uid://cyr441vn7v3s"]
 
 [ext_resource type="FontFile" uid="uid://b8xmfcyan8cl8" path="res://Assets/Fonts/HoltwoodOneSC-Regular.ttf" id="1_12iv8"]
 [ext_resource type="Script" path="res://Player/points_manager.gd" id="1_ws0fl"]
-
-[sub_resource type="Gradient" id="Gradient_pp2og"]
-offsets = PackedFloat32Array(0, 0.211268, 0.950704, 0.971831, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0.245414, 0.253889, 1, 0.598592, 0.598592, 0.598592, 1, 0.28169, 0.28169, 0.28169, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ihkj"]
-gradient = SubResource("Gradient_pp2og")
-
-[sub_resource type="Gradient" id="Gradient_rpqls"]
-offsets = PackedFloat32Array(0, 0.471831, 0.711268, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.75057, 0.000717148, 0.80139, 1, 0.711268, 0.711268, 0.711268, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_r5u7u"]
-gradient = SubResource("Gradient_rpqls")
+[ext_resource type="Texture2D" uid="uid://cyosd1sckusu1" path="res://Assets/UI/PointsBar.png" id="2_85o4x"]
+[ext_resource type="Texture2D" uid="uid://17bdceqx45dq" path="res://Assets/UI/PointsFrame.png" id="3_p2bdi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6eo5v"]
 font = ExtResource("1_12iv8")
@@ -48,14 +36,18 @@ layout_mode = 2
 [node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-max_value = 1000.0
-value = 500.0
+max_value = 50000.0
+value = 15000.0
 rounded = true
 nine_patch_stretch = true
-texture_under = SubResource("GradientTexture1D_5ihkj")
-texture_progress = SubResource("GradientTexture1D_r5u7u")
+texture_under = ExtResource("2_85o4x")
+texture_over = ExtResource("3_p2bdi")
+texture_progress = ExtResource("2_85o4x")
+tint_under = Color(1, 1, 1, 0.164706)
+tint_over = Color(0, 0, 0, 1)
+tint_progress = Color(0.2, 0.917647, 0.305882, 1)
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "You have points"
+text = "Smash a vending machine"
 label_settings = SubResource("LabelSettings_6eo5v")
