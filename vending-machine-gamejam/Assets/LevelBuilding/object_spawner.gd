@@ -7,16 +7,18 @@ var road_size = Vector2()
 
 var rotation = [0,90,180,270]
 
-var number_of_vend1 = 50
-var number_of_vend2 = 50
-var number_of_vend3 = 50
-var number_of_vend4 = 20
-var number_of_block = 50
+@export var number_of_vend1 = 50
+@export var number_of_vend2 = 50
+@export var number_of_vend3 = 50
+@export var number_of_vend4 = 20
+@export var number_of_shelves = 150
+@export var number_of_block = 50
+
+
 var offset1 = Vector2(1,1)
 var offset2 =Vector2(3,3)
 var offset3 =Vector2(2,0)
 var no_offset = Vector2(4,2)
-var number_of_shelves = 150
 
 @export var machine1:PackedScene
 @export var pallet:PackedScene
@@ -101,7 +103,7 @@ func place_shelves(type,amount,offset):
 		var allowed_rotations = $ObjectRotationCheck.look_up_rotation(tile_type)
 		if not allowed_rotations == null:
 			var tile_rotation = rotation[randi() % rotation.size() -1]
-			tile.y += tile.y + .5
+			tile.y += tile.y + .6
 			spawn_Shelves(tile, tile_rotation,type,offset)
 		tile_list.pop_front()
 
