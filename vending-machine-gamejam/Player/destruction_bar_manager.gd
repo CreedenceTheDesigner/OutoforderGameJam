@@ -2,7 +2,15 @@ extends Control
 
 
 enum {LEVEL_ONE, LEVEL_TWO, LEVEL_THREE}
-@onready var level = LEVEL_ONE
+@onready var level = LEVEL_ONE:
+	set(value):
+		level = value
+		if level == LEVEL_ONE:
+			SignalManager.destruction_one.emit()
+		elif level == LEVEL_TWO:
+			SignalManager.destruction_two.emit()
+		elif level == LEVEL_THREE:
+			SignalManager.destruction_three.emit()
 
 @export var destruction_add := 300
 @export var decrease_bar := .00003

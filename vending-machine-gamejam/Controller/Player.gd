@@ -30,9 +30,37 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 # Stores the direction the player is trying to look this frame.
 var _look := Vector2.ZERO
 
-enum state {IDLE, RUNNING, ATTACKING}
+enum state {IDLE, RUNNING, ATTACK, ATTACK2, HEAVYATTACK}
 
 @onready var current_state = state.IDLE
+
+enum {WRENCH, PIPE, BAT}
+
+@onready var weapon = WRENCH:
+	set(value):
+		weapon = value
+		match weapon:
+			WRENCH:
+				wrench.visible = true
+				pipe.visible = false
+				bat.visible = false
+				#wrench_collider.disabled = false
+				#bat_collider.disabled = true
+				#pipe_collider.disabled = true
+			PIPE:
+				wrench.visible = false
+				pipe.visible = true
+				bat.visible = false
+				#wrench_collider.disabled = true
+				#bat_collider.disabled = true
+				#pipe_collider.disabled = false
+			BAT:
+				wrench.visible = false
+				pipe.visible = false
+				bat.visible = true
+				#wrench_collider.disabled = true
+				#bat_collider.disabled = false
+				#pipe_collider.disabled = true
 
 enum VIEW {
 	FIRST_PERSON,
@@ -79,14 +107,27 @@ var zoom := min_zoom:
 
 @onready var jump_audio: AudioStreamPlayer3D = %JumpAudio
 @onready var run_audio: AudioStreamPlayer3D = %RunAudio
-@onready var weapon_area: Area3D = $BasePivot/WeaponArea
+@onready var weapon_area: Area3D = $BasePivot/Model/Armature_002/Skeleton3D/WeaponArea
 @onready var attack_timer: Timer = %AttackTimer
-@onready var animation_player: AnimationPlayer = $BasePivot/TestAnims/AnimationPlayer
+@onready var state_timer: Timer = $BasePivot/Model/Armature_002/Skeleton3D/WeaponArea/StateTimer
+@onready var attack_timer_2: Timer = $BasePivot/Model/Armature_002/Skeleton3D/WeaponArea/AttackTimer2
+@onready var animation_player: AnimationPlayer = $BasePivot/Model/AnimationPlayer
+
+@onready var bat: MeshInstance3D = %Bat
+@onready var pipe: MeshInstance3D = %Pipe
+@onready var wrench: MeshInstance3D = %Wrench
+@onready var bat_collider: CollisionShape3D = %BatCollider
+@onready var pipe_collider: CollisionShape3D = %PipeCollider
+@onready var wrench_collider: CollisionShape3D = %WrenchCollider
+var is_attacking := false
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Whenever the player loads in, give the autoload ui a reference to itself.
 	UserInterface.update_player(self)
+	SignalManager.destruction_one.connect(change_wrench)
+	SignalManager.destruction_two.connect(change_pipe)
+	SignalManager.destruction_three.connect(change_bat)
 
 func _process(delta: float) -> void:
 	match current_state:
@@ -96,13 +137,20 @@ func _process(delta: float) -> void:
 		state.RUNNING:
 			_running(delta)
 			print("running")
-		state.ATTACKING:
+		state.ATTACK:
 			print("attacking")
 			_attacking()
+		#state.ATTACK2:
+			#print("second attack")
+			#_attacking2()
 		
-	if Input.is_action_just_pressed("attack"):
-		set_physics_process(false)
-		current_state = state.ATTACKING
+	if Input.is_action_just_pressed("attack") and is_on_floor():
+		if not is_attacking:
+			current_state = state.ATTACK
+			weapon_area.monitoring = true
+		#if is_attacking:
+			#current_state = state.ATTACK2
+			#weapon_area.monitoring = true
 
 func _physics_process(delta: float) -> void:
 
@@ -182,11 +230,9 @@ func _on_footstep_timer_timeout() -> void:
 		run_audio.play()
 
 
-func _on_attack_timer_timeout() -> void:
-	weapon_area.monitoring = false
-	weapon_area.visible = false
+func _on_state_timer_timeout() -> void:
 	current_state = state.IDLE
-	set_physics_process(true)
+	is_attacking = false
 
 func _idle(delta: float):
 	animation_player.play("Idle")
@@ -194,18 +240,21 @@ func _idle(delta: float):
 	
 	
 func _running(delta: float):
-	animation_player.play("Running")
+	animation_player.play("Run")
 	_player_movement(delta)
 	
 func _attacking():
 	if attack_timer.is_stopped():
-		animation_player.play("LongSwing", -1, 3)
-		var smash = destruction_particles.instantiate()
-		add_child(smash)
-		smash.global_position = weapon_area.global_position
-		weapon_area.monitoring = true
-		weapon_area.visible = true
-		attack_timer.start(1.5)
+		animation_player.play("OverhandStrike")
+		attack_timer.start(1)
+		state_timer.start(1)
+		is_attacking = true
+	
+#func _attacking2():
+	#if state_timer.get_time_left() and attack_timer_2.is_stopped():
+		#animation_player.queue("BackHand")
+		#attack_timer_2.start(1)
+		#state_timer.start(1)
 	
 func _player_movement(delta: float):
 		# Add gravity.
@@ -241,3 +290,12 @@ func _player_movement(delta: float):
 		
 	#update_animation_tree()
 	move_and_slide()
+
+func change_wrench():
+	weapon = WRENCH
+	
+func change_pipe():
+	weapon = PIPE
+	
+func change_bat():
+	weapon = BAT
