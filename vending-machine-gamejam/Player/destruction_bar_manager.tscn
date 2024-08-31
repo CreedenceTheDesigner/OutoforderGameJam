@@ -49,10 +49,39 @@ text = "Destruction Meter"
 label_settings = SubResource("LabelSettings_1j6pp")
 horizontal_alignment = 1
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CenterContainer/MarginContainer/VBoxContainer"]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LevelOneBar" type="TextureProgressBar" parent="CenterContainer/MarginContainer/VBoxContainer/CenterContainer"]
 layout_mode = 2
 max_value = 1000.0
-value = 100.0
+value = 30.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 4
+texture_under = ExtResource("2_ppxhq")
+texture_over = ExtResource("3_ju054")
+texture_progress = ExtResource("2_ppxhq")
+tint_under = Color(0.160784, 0.160784, 0.160784, 0.172549)
+tint_progress = Color(0.0509804, 0.219608, 0.952941, 1)
+
+[node name="LevelTwoBar" type="TextureProgressBar" parent="CenterContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+max_value = 1000.0
+value = 60.0
+allow_greater = true
+allow_lesser = true
+fill_mode = 4
+texture_under = ExtResource("2_ppxhq")
+texture_over = ExtResource("3_ju054")
+texture_progress = ExtResource("2_ppxhq")
+tint_under = Color(0.160784, 0.160784, 0.160784, 0.172549)
+tint_progress = Color(0.0196078, 0.756863, 0, 1)
+
+[node name="LevelThreeBar" type="TextureProgressBar" parent="CenterContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+max_value = 1000.0
+value = 90.0
 allow_greater = true
 allow_lesser = true
 fill_mode = 4
@@ -62,21 +91,11 @@ texture_progress = ExtResource("2_ppxhq")
 tint_under = Color(0.160784, 0.160784, 0.160784, 0.172549)
 tint_progress = Color(0.976471, 0.219608, 0, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MarginContainer/VBoxContainer/TextureProgressBar"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -27.0
-offset_top = -20.0
-offset_right = 27.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
 
-[node name="DestructionLevelLabel" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/TextureProgressBar/CenterContainer"]
+[node name="DestructionLevelLabel" type="Label" parent="CenterContainer/MarginContainer/VBoxContainer/CenterContainer/CenterContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Level 1"
 label_settings = SubResource("LabelSettings_pvpfq")
