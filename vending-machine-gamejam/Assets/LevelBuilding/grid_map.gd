@@ -24,6 +24,7 @@ func _ready():
 	make_map_border()
 	make_map()
 	record_tile_positions()
+	record_road_positions()
 	erase_walls()
 
 
@@ -135,7 +136,7 @@ func record_tile_positions():
 		for z in range(0, height):
 			var current_cell = Vector3(x, 0, z)
 			var current_tile_type = get_cell_item(current_cell)
-			print(current_tile_type)
+			
 			if current_tile_type > 14:
 				tiles.append(current_cell)
 	var map_size = Vector2(width, height)
@@ -147,7 +148,7 @@ func record_road_positions():
 		for z in range(0, height):
 			var current_cell = Vector3(x, 0, z)
 			var current_tile_type = get_cell_item(current_cell)
-			print(current_tile_type)
+			print(current_cell)
 			if current_tile_type < 14:
 				tiles.append(current_cell)
 	var map_size = Vector2(width, height)
