@@ -3214,6 +3214,21 @@ tracks/53/keys = {
 "values": [false, true, false]
 }
 
+[sub_resource type="Animation" id="Animation_mqywr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Armature_002/Skeleton3D/WeaponArea:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
 [sub_resource type="Animation" id="Animation_p6jb7"]
 resource_name = "Run"
 length = 0.5
@@ -3963,21 +3978,6 @@ tracks/52/path = NodePath("Armature_002/Skeleton3D:mixamorig_RightHandPinky3")
 tracks/52/interp = 1
 tracks/52/loop_wrap = true
 tracks/52/keys = PackedFloat32Array(0, 1, 0.139828, -0.00132228, -0.00397619, 0.990167)
-
-[sub_resource type="Animation" id="Animation_mqywr"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Armature_002/Skeleton3D/WeaponArea:monitoring")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0tbfg"]
 _data = {
